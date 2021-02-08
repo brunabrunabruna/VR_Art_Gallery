@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MINI VR MUSEUM</title>
+    <meta name="description" content="Hello, WebVR! • A-Frame">
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+      <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+        <script src="https://unpkg.com/aframe-animation-component@^4.1.1/dist/aframe-animation-timeline-component.min.js"></script>
+        <script src="https://unpkg.com/aframe-animation-timeline-component@2.0.0/dist/aframe-animation-timeline-component.min.js"></script>
+      
+         <script src="js/aframe-extras.js"></script>
+    <script src="js/aframe-text-geometry-component.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+      
+      <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+  <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+  <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+    
+     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+    
+    
+        <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+        <script src="https://unpkg.com/aframe-extras.ocean@%5E3.5.x/dist/aframe-extras.ocean.min.js"></script>
+        <script src="https://unpkg.com/aframe-gradient-sky@1.0.4/dist/gradientsky.min.js"></script>
+        
+
+        <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v4.1.2/dist/aframe-extras.min.js"></script>
+
+        <script src="https://unpkg.com/aframe-teleport-controls/dist/aframe-teleport-controls.min.js"></script> 
+       <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+      
+      
+  </head>
+  <body>
+    <a-scene antialias="true" inspector stats >
+        
+        <a-assets>
+        <img id="holofloor" src="img/holographic9.jpg">
+        <img id="holo" src="img/holographic2.jpg">
+        <img id="milky" src="img/Milky-Way-Mountain.jpg">
+        <img id="stars" src="img/stars.jpg">
+        <img id="artist" src="img/artist_text_example-01.jpg">
+            
+        <a-asset-item id="heart" src="img/heart_lp.obj"></a-asset-item>
+        <a-asset-item id="polygon" src="img/polygon2.gltf"></a-asset-item>
+        <a-asset-item id="cube" src="img/cube.gltf"></a-asset-item>
+        <a-asset-item id="polygon3" src="img/polygon3.gltf"></a-asset-item>
+        <a-asset-item id="polygon4" src="img/polygon4.gltf"></a-asset-item>
+            
+            
+            
+      
+            
+          
+        
+        
+        </a-assets>
+    
+    <!--  
+
+ <a-timeline id="heartbeat">
+            
+            <a-timeline-animation select="#heart_scene" name="rotation"></a-timeline-animation>
+        
+            
+            </a-timeline> 
+
+PROJECT URL
+
+http://localhost:8000/Documents/GitHub/VR_Art_Gallery/room1_test.html -->        
+        
+        
+        
+    <!-- environment   --> 
+    <a-entity position="-3 0 -6" environment="preset: starry"></a-entity> 
+        
+        
+     <a-entity id="cam-rig"  movement-controls="speed: 0.00" position="0 0 0"> 
+       
+      <a-entity camera look-controls wasd-controls position="0 1.6 0">
+        
+            <a-entity geometry="primitive: sphere; radius: 0.005" position="0 0 -1"
+            material="color: blue; opacity: 0.5"></a-entity>
+      </a-entity>
+      <!-- ambient light 
+       <a-entity light="type: ambient; color: #fff" intensity="1"></a-entity> -->
+       
+       
+      
+      </a-entity>
+        
+        <!-- floor cylinder in the middle
+
+heart animations still not working:   
+
+
+
+animation__scale1="property: scale; to: 0.15 0.15 0.15; dur: 1000; easing: linear; "
+animation__scale2="property: scale; to: 0.1 0.1 0.1; dur: 1000; easing: linear;"
+                        
+
+-->
+        
+        
+       
+        <a-gltf-model src="#polygon4" scale="0.01 0.01 0.01" position="-1 4 0" ></a-gltf-model>
+        
+        
+        <a-cylinder position="0 -0.25 -7" height="1" radius="3" segments-radial="60" material="color:white; opacity: 0.5" >
+        
+            <a-obj-model id="heart_scene" src="#heart"  scale="0.1 0.1 0.1" position="0 1 0" rotation="0 0 0" opacity="1" shadow="cast: true"
+                         
+                         animation__rotation="property: rotation; to: 0 360 0; dur: 10000; easing: linear; dir: alternate; loop: true"
+                    
+                      
+                         
+                         
+                
+                         ></a-obj-model> 
+            
+            <a-entity light="type: spot; angle: 30;
+                              castShadow: true;
+                              intensity: 1;
+                              shadowCameraVisible: true;
+                              distance: 120;
+                              color:pink;
+                              penumbra: 0.8;
+                              decay:0.8;"
+                      fog="color:  #40f746;  density:  14.23;  far:  987.78;  near:  2.42"
+                      
+                      position=" 0 7 0" rotation="-90 0 0"></a-entity>
+            
+        
+        </a-cylinder>
+        
+        
+    
+      <!-- middle wall-->
+      <a-box position="0 3 -14" height="6" width="8" depth="0.5" rotation="0 0 0" color="black" opacity="0.5" shadow>
+          
+             
+          <!-- artist info -->
+        <a-box position="4 -2 1" height="2" width="1.5" depth="0.05" rotation="0 0 0" color="#fafafa" src="#artist" shadow></a-box>  
+          
+          <a-box position="0 0 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
+          
+          
+       
+          <a-box position="0 0 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
+          
+          <a-box position="1.5 1 0.26" rotation="0 0 0" width="1" height="1" depth="0.1" material=" src:#holo; color:white; shader:flat " shadow></a-box> 
+          
+          <a-box position="-2 1.5 0.26" rotation="0 0 0" width="2" height="2" depth="0.1" material=" src:#holo; color:white; shader:flat " shadow></a-box>
+      
+          
+          <a-box position="-3 -0.5 0.26" rotation="0 0 0" width="1.4" height="1" depth="0.1" material=" src:#milky; color:white; shader:flat " shadow></a-box>
+         
+       
+        
+      </a-box>
+      
+      
+       <!--left wall -->
+      <a-box position="-10 3 -9" height="6" width="8" depth="0.5" rotation="0 60 0" material="color:pink; opacity:0.5; shader:flat">
+          
+            <!-- artist info -->
+        <a-box position="4 -2 1" height="2" width="1.5" depth="0.05" rotation="0 0 0" color="white" src="#artist" shadow></a-box>  
+          
+      
+          <a-box position="0 0 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
+           
+          <a-box position="0 0 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
+          
+          <a-box position="1.5 1 0.26" rotation="0 0 0" width="1" height="1" depth="0.1" material=" src:#holo; color:white; shader:flat " shadow></a-box> 
+          
+          <a-box position="-2 1.5 0.26" rotation="0 0 0" width="2" height="2" depth="0.1" material=" src:#holo; color:white; shader:flat " shadow></a-box>
+      
+          
+          <a-box position="-3 -0.5 0.26" rotation="0 0 0" width="1.4" height="1" depth="0.1" material=" src:#milky; color:white; shader:flat " shadow></a-box>
+          
+          
+
+        
+      </a-box>
+      
+      <!--right wall -->
+      <a-box position="10 3 -9" height="6" width="8" depth="0.5" rotation="0 -60 0" color="pink" src="#" opacity="0.5" shadow>
+          
+             
+          <!-- artist info -->
+          <a-box position="4 -2 1" height="2" width="1.5" depth="0.05" rotation="0 0 0" color="pink" src="#artist"shadow></a-box>  
+          
+          
+          <a-box position="0 -0.5 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
+          
+          <a-box position="1.5 0 0.26" rotation="0 0 0" width="1" height="1" depth="0.1" material=" src:#holo; color:white; shader:flat " shadow></a-box> 
+          
+          <a-box position="-2 1 0.26" rotation="0 0 0" width="2" height="2" depth="0.1" material=" src:#holo; color:white; shader:flat " shadow></a-box>
+      
+          
+          <a-box position="-3 -1 0.26" rotation="0 0 0" width="1.4" height="1" depth="0.1" material=" src:#milky; color:white; shader:flat " shadow></a-box>
+      
+      </a-box>
+      
+    
+      
+     
+    </a-scene>
+  </body>
+</html>
