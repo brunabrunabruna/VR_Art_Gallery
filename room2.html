@@ -41,7 +41,7 @@
       
   </head>
   <body>
-    <a-scene antialias="true" inspector stats  physics=" driver: ammo; debug: true; debugDrawMode: 1;"
+    <a-scene antialias="true" inspector stats  physics=" driver: ammo; debug: ; debugDrawMode: 1;"
              shadow="type: pcfsoft"
              > 
         
@@ -59,6 +59,7 @@
         <img id="heartpng" src="img/heart-png.png">
         <img id="marble" src="img/black-marble.jpg">
         <img id="concrete" src="img/concrete.jpg">
+        <img id="hdri" src="img/hdri.jpg">
             
             
             
@@ -76,9 +77,9 @@
        
             
             
-            
+      <!-- camera and cursor-->      
         
-          <a-entity id="cam-rig"  movement-controls="speed: 0.1" position="0 0 0"> 
+      <a-entity id="cam-rig"  movement-controls="speed: 0.1" position="0 0 0"> 
        
       <a-entity camera look-controls wasd-controls position="0 1.6 0">
         
@@ -91,6 +92,9 @@
               
             </a-entity>
         
+        
+    <!-- sky hdri -->       
+        <a-sky src="#hdri"></a-sky>
         
         
 <!--
@@ -116,7 +120,7 @@ http://localhost:8000/Documents/GitHub/VR_Art_Gallery/room1_test.html -->
                    repeat="50 50"
                 
                    side="double"
-                   material="roughness: 0.5; metalness: 0.1"
+                   material="roughness: 0; metalness: 0.1"
                    position="0 0.1 0"
                    rotation="90 0 90"
                      
@@ -130,8 +134,8 @@ http://localhost:8000/Documents/GitHub/VR_Art_Gallery/room1_test.html -->
                    repeat="50 50"
                 
                    side="double"
-                   material="roughness: 1;"
-                   position="0 4 0"
+                   material="roughness: 0;"
+                   position="0 6 0"
                    rotation="90 0 90"
                      
                    scale="100 100 100" ></a-plane>
@@ -140,20 +144,36 @@ http://localhost:8000/Documents/GitHub/VR_Art_Gallery/room1_test.html -->
         
     <!-- LIGHTSSSSSSSS -->
         
+
         
-    <a-light type="ambient" color="#445451" intensity: 1;></a-light>
-        
+    <!-- ambient light -->  
+        <a-entity light="type:ambient; color: #faf4ea; intensity: 0.8; "></a-entity>
+  
+     <!-- directional light -->       
+    
+        <a-entity light="color: #EEE; intensity: 0.4; castShadow: true" position="-2.49201 2.84297 2.7375" visible=""></a-entity>
         
         
 
        
+   
+     <!-- spot light wall paintings 1  
+              
         
-        <a-entity light="type: spot; angle: 45; castShadow: true; intensity: 5; shadowCameraVisible: true; distance: 120; color: white; penumbra: 0.8; shadowRadius: 5" position="-1.40336 3.9363 -0.87424" rotation="-51 82 -83.7" scale=""></a-entity>
+        <a-entity light="type: spot; angle: 15; castShadow: true; intensity: 5; shadowCameraVisible: true; distance: 5; color: white; penumbra: 0.8; shadowRadius: 5" position="-1.40336 3.9363 -0.87424" rotation="-51 82 -83.7" scale=""></a-entity>  -->
+       
+        <a-entity light="type: spot; angle: 40; castShadow: true; intensity: 1.1; shadowCameraVisible: true; distance: 3.5; color: white; penumbra: 1; shadowRadius: 5" position="-1.6861 2.87177 -0.37876" rotation="-36.8629586231269 69.81891804125672 -86.15337182264136" scale=""></a-entity>
         
         
+        <!-- spot light wall paintings 2  -->
         
-
-     <!-- ARTIST TOTEM SPOT -->  
+        <a-entity position="0 0 0" rotation=" 0 180 0">
+           <a-entity light="type: spot; angle: 40; castShadow: true; intensity: 1.5; shadowCameraVisible: true; distance: 3.5; color: white; penumbra: 1; shadowRadius: 5" position="-1.6861 2.87177 6" rotation="-36.8629586231269 69.81891804125672 -86.15337182264136" scale=""></a-entity>
+        
+        
+           </a-entity>
+        
+     <!-- spot light artist totem  
          
         
         <a-entity light="type: spot; angle: 45;
@@ -166,67 +186,79 @@ http://localhost:8000/Documents/GitHub/VR_Art_Gallery/room1_test.html -->
                               decay:0.8;"
                       fog="color:  #40f746;  density:  14.23;  far:  987.78;  near:  2.42"
                       
-                      position=" -2 3.9 -3.7" rotation="-85 0 0"></a-entity>
+                      position=" -2 3.9 -3.7" rotation="-85 0 0"></a-entity> --> 
         
         
         
             
       
+             
+ 
+          
+        <!-- ceiling details-->
+        
+      <a-box id="first" position="2.88397 5.27152 -3.06916" height="1" width="10" depth="0.5" rotation="" material="src: #concrete; repeat: 50 10; color: grey; ambientOcclusionMap: " shadow="" geometry="width: 20">
+            </a-box>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!--111111111  left wall small -->
+        <a-box id="first" position="-3.85 1.5 -9" height="3" width="30" depth="0.5" rotation="0 90 0" material="src: #concrete; repeat: 50 10; color:#fafafa; opacity:1; " shadow="receive: true">
+        
+            
+       
+         <!-- artist info -->
+        <a-box position="-10.4 0 0.26" height="2" width="1.5" depth="0.05" rotation="0 0 0"  src="#artist" shadow="cast: true">
+            
+            
+            
         <!-- ARTIST BUBBLE 1 -->
         
-        <a-cylinder position="-2 2.7 -4" rotation="0 90 90" radius="0.5" height="0.1" src="#avatar1" 
+        <a-cylinder position="0 2 0" rotation="0 90 90" radius="0.5" height="0.1" src="#avatar1" 
                     
-                    animation__position="property: position ; to: -2 3 -4; dur: 3000; easing: linear; dir: alternate; loop: true"
+                    animation__position="property: position ; to: 0 1.8 0; dur: 3000; easing: linear; dir: alternate; loop: true"
                     >
 
                     <a-cylinder radius="0.6" height="0.05" color="blue"></a-cylinder>    
             
             
         </a-cylinder>
-              <!-- artist info -->
-        <a-box position="-2 1 -4" height="2" width="1.5" depth="0.05" rotation="0 0 0" color="white" src="#artist" shadow="cast: true"></a-box>  
+            
+            
+            </a-box>  
+            
+            
+            
+            
+               <!-- artist 1 paintings --> 
+      <a-entity position="0 0 0.1" shadow="cast: true" >
+          <a-box position="-8.92952 0 0.26" rotation="0 0 0" width="0.8" height="1.2" depth="0.01" material=" src:#stars; color:white; " ></a-box>
+       
+          <a-box position="-8 0 0.26" rotation="0 0 0" width="0.65" height="0.65" depth="0.01" material=" src:#stars; color:white; " ></a-box>
+          
+          <a-box position="-6.82825 0  0.26" rotation="0 0 0" width="1" height="1.5" depth="0.01" material=" src:#holo; color:white; " ></a-box>
+          
+    
+      </a-entity>    
+        
+        </a-box>
+        
+            
        
         
-        <!-- ARTIST BUBBLE 3 -->
-        
-        <a-cylinder position="-2 3 -14" rotation="0 90 90" radius="0.5" height="0.1" src="#avatar1" 
-                    
-                    animation__position="property: position ; to: -2 3.5 -14; dur: 3000; easing: linear; dir: alternate; loop: true"
-                    >
-
-                    <a-cylinder radius="0.6" height="0.05" color="blue"></a-cylinder>    
-            
-            
-        </a-cylinder>
-              <!-- artist info -->
-        <a-box position="-2 1 -14" height="2.5" width="2" depth="0.05" rotation="0 0 0" color="white" src="#artist" shadow></a-box>  
-          
-        
-        
-      
-       <!--left wall -->
+       <!--left wall big -->
       <a-box id="first" position="-4 3 -9" height="6" width="30" depth="0.5" rotation="0 90 0" material="src: #concrete; repeat: 50 10; color:grey; opacity:1; " shadow="receive: true">
 
-          <!-- artist 1--> 
-      <a-entity position="0 0 0.5" shadow="cast: true" >
-          <a-box position="-9.5 -1 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; " ></a-box>
-       
-          <a-box position="-8 -1 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; " ></a-box>
-          
-          <a-box position="-6.5 -1 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " ></a-box>
-          
-      </a-entity>    
+      
           
         <!-- artist 3--> 
-      
-          <a-box position="4.5 -1 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
-       
-          <a-box position="1.5 -1 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
-          
-          <a-box position="3 -1 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
-       
-          
-          
+
 
         
       </a-box>
@@ -234,56 +266,158 @@ http://localhost:8000/Documents/GitHub/VR_Art_Gallery/room1_test.html -->
         
         
         
+      
+      <!--3333333333333  right wall -->
+    <a-box position="10.97114 3 0.49919" height="6" width="30" depth="0.5" rotation="0 -90 0" material="src: #concrete; repeat: 50 10; color: grey" geometry="width: 25">
+          
+     <!-- artist 2-->
+          <a-box position="10.9943 0 0.26" rotation="" width="1" height="1.5" depth="0.1" material="src: [object HTMLImageElement]; color: white; shader: flat" shadow="" geometry=""></a-box>
+       
+          <a-box position="3 -0.5 0.26" rotation="" width="1" height="1.5" depth="0.1" material="src: [object HTMLImageElement]; color: white; shader: flat" shadow="" geometry=""></a-box>
+          
+          <a-box position="1.5 -1 0.26" rotation="" width="1" height="1.5" depth="0.1" material="src: [object HTMLImageElement]; color: white; shader: flat" shadow="" geometry=""></a-box>
+          
+          
+          
+          
+          
+          <a-box position="-9.5 0 0.26" rotation="" width="1" height="1.5" depth="0.1" material="src: [object HTMLImageElement]; color: white; shader: flat" shadow="" geometry=""></a-box>
+       
+          <a-box position="-8 0 0.26" rotation="" width="1" height="1.5" depth="0.1" material="src: [object HTMLImageElement]; color: white; shader: flat" shadow="" geometry=""></a-box>
+          
+          <a-box position="-6.5 0 0.26" rotation="" width="1" height="1.5" depth="0.1" material="src: [object HTMLImageElement]; color: white; shader: flat" shadow="" geometry=""></a-box>
+       
+        </a-box>
+    
         
         
         
         
-        <!-- ARTIST BUBBLE 2 -->
         
-        <a-cylinder position="2 3 -9" rotation="0 90 90" radius="0.5" height="0.1" src="#avatar1" 
-                    
-                    animation__position="property: position ; to: 2 3.5 -9; dur: 4000; easing: linear; dir: alternate; loop: true"
-                    >
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <!--22222222 front wall // artist 2-->
+        
+        <a-box id="first" position="4.47254 2.84252 -9.6481" height="6" width="10" depth="0.5" rotation="" material="src: #concrete; repeat: 5 5; color: white" geometry="width: 17"></a-box>
+      
+        <!-- artist info 2-->
+        <a-box position="-1.22403 1.24143 -9.32767" height="2.5" width="2" depth="0.05" rotation="" color="white" src="#artist" shadow="" material="" geometry=""></a-box>
+        
+        
+        <!-- artist bubble -->
+        <a-cylinder position="-1.22403 3.4001 -9" rotation="0 90 90" radius="0.5" height="0.1" src="#avatar1" animation__position="property: position; to: -1.22403 3 -9; dur: 4000; easing: linear; dir: alternate; loop: true" material="" geometry="">
 
-                    <a-cylinder radius="0.6" height="0.05" color="blue"></a-cylinder>    
+                    <a-cylinder radius="0.6" height="0.05" color="blue" material="" geometry=""></a-cylinder>    
             
         
         </a-cylinder>
         
-              <!-- artist info -->
-        <a-box position="2 1 -9" height="2.5" width="2" depth="0.05" rotation="0 0 0" color="white" src="#artist" shadow></a-box>  
-      
-      <!--right wall -->
-      <a-box position="4 3 -9" height="6" width="30" depth="0.5" rotation="0 -90 0" material="src: #concrete; repeat: 50 10; color:grey; opacity:1; shader:flat">
-          
-     <!-- artist 2-->
-          <a-box position="4.5 0 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
-       
-          <a-box position="3 -0.5 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
-          
-          <a-box position="1.5 -1 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
-          
-          
-          
-          
-          
-          <a-box position="-9.5 0 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
-       
-          <a-box position="-8 0 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
-          
-          <a-box position="-6.5 0 0.26" rotation="0 0 0" width="1" height="1.5" depth="0.1" material=" src:#stars; color:white; shader:flat " shadow></a-box>
-       
-        </a-box>
-      
         
         
-        <!-- back wall-->
         
-        <a-box id="first" position="0 3 -24" height="6" width="10" depth="0.5" rotation="0 0 0" material="src: #concrete; repeat: 50 10; color:grey; opacity:1; "></a-box>
-        
-        <a-box id="first" position="0 3 10" height="6" width="10" depth="0.5" rotation="0 0 0" material="src: #concrete; repeat: 50 10; color:grey; opacity:1; "></a-box>
-   
+            <!--front wall small -->
     
+       
+         <!-- artist info -->
+        <a-box position="-10.4 0 0.26" height="2" width="1.5" depth="0.05" rotation="0 0 0"  src="#artist" shadow="cast: true">
+            
+            
+            
+        <!-- ARTIST BUBBLE 1 -->
+        
+        <a-cylinder position="0 2 0" rotation="0 90 90" radius="0.5" height="0.1" src="#avatar1" 
+                    
+                    animation__position="property: position ; to: 0 1.8 0; dur: 3000; easing: linear; dir: alternate; loop: true"
+                    >
+
+                    <a-cylinder radius="0.6" height="0.05" color="blue"></a-cylinder>    
+            
+            
+        </a-cylinder>
+            
+            
+            </a-box>  
+            
+            
+            
+            
+               <!-- artist 1 paintings --> 
+      <a-entity position="0 0 0.1" shadow="cast: true" >
+          <a-box position="-8.92952 0 0.26" rotation="0 0 0" width="0.8" height="1.2" depth="0.01" material=" src:#stars; color:white; " ></a-box>
+       
+          <a-box position="-8 0 0.26" rotation="0 0 0" width="0.65" height="0.65" depth="0.01" material=" src:#stars; color:white; " ></a-box>
+          
+          <a-box position="-6.82825 0  0.26" rotation="0 0 0" width="1" height="1.5" depth="0.01" material=" src:#holo; color:white; " ></a-box>
+          
+    
+      </a-entity>    
+
+        
+        
+        
+          <!-- back wall // artist 2
+       <a-box id="first" position="3.21456 1.5 -9.16876" height="3" width="30" depth="0.5" rotation="" material="src: [object HTMLImageElement]; repeat: 50 10; color: #fafafa" shadow="" geometry="width: 16.9">
+              </a-box> -->
+            
+       
+         <!-- artist info -->
+        <a-box position="-4.75382 0 0.26" height="2" width="1.5" depth="0.05" rotation="" src="#artist" shadow="" material="" geometry="">
+            
+            
+            
+        <!-- ARTIST BUBBLE 1 -->
+        
+        <a-cylinder position="0 1.8900576666657192 0" rotation="0 90 90" radius="0.5" height="0.1" src="#avatar1" animation__position="property: position; to: 0 1.8 0; dur: 3000; easing: linear; dir: alternate; loop: true" material="" geometry="">
+
+                    <a-cylinder radius="0.6" height="0.05" color="blue" material="" geometry=""></a-cylinder>    
+            
+            
+        </a-cylinder>
+            
+            
+            </a-box>  
+            
+            
+            
+            
+               <!-- artist 1 paintings --> 
+      <a-entity position="5.88299 0 0.1" shadow="">
+          <a-box position="-8.92952 0 0.26" rotation="" width="0.8" height="1.2" depth="0.01" material="src: [object HTMLImageElement]; color: white" geometry=""></a-box>
+       
+          <a-box position="-8 0 0.26" rotation="" width="0.65" height="0.65" depth="0.01" material="src: [object HTMLImageElement]; color: white" geometry=""></a-box>
+          
+          <a-box position="-6.82825 0 0.26" rotation="" width="1" height="1.5" depth="0.01" material="src: [object HTMLImageElement]; color: white" geometry=""></a-box>
+          
+    
+      </a-entity>    
+        
+           <a-box position="-4.75382 0 0.26" height="2" width="1.5" depth="0.05" rotation="" src="#artist" shadow="" material="" geometry="">
+            
+            
+            
+        <!-- ARTIST BUBBLE 1 -->
+        
+        <a-cylinder position="0 1.8900576666657192 0" rotation="0 90 90" radius="0.5" height="0.1" src="#avatar1" animation__position="property: position; to: 0 1.8 0; dur: 3000; easing: linear; dir: alternate; loop: true" material="" geometry="">
+
+                    <a-cylinder radius="0.6" height="0.05" color="blue" material="" geometry=""></a-cylinder>    
+            
+            
+        </a-cylinder>
+            
+            
+            </a-box>
+           
+  
     </a-scene>
   </body>
 </html>
